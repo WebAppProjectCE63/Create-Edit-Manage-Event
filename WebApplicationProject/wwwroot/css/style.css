@@ -1,0 +1,381 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+}
+
+#navitem {
+    margin-left: auto;
+    margin-right: 70px;
+}
+
+    #navitem ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-self: flex-end;
+        gap: 5px;
+    }
+
+        #navitem ul li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+            #navitem ul li a:hover {
+                background-color: #f5f5f5;
+            }
+
+#navprofile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#profilename {
+    text-align: right;
+}
+
+    #profilename h4,
+    #profilename p {
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    #profilename h4 {
+        font-size: 16px;
+        color: #333;
+    }
+
+    #profilename p {
+        font-size: 12px;
+        color: #888;
+    }
+
+#navprofile img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+#pagebanner {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    height: 200px;
+    padding: 20px;
+}
+
+    #pagebanner h1,
+    #pagebanner p {
+        margin-bottom: 0;
+        line-height: 1.2;
+    }
+
+    #pagebanner h1 {
+        font-size: 64px;
+        color: #333;
+    }
+
+    #pagebanner p {
+        font-size: 24px;
+        color: #888;
+    }
+
+#profilebanner {
+    display: grid;
+    width: 90%;
+    align-items: center;
+    margin: auto;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+#profileimg {
+    grid-column: 1 / span 6;
+}
+
+    #profileimg img {
+        margin-top: 5%;
+        width: 80%;
+        height: 350px;
+        object-fit: cover;
+    }
+
+#profileinfo {
+    grid-column: span 6;
+    display: grid;
+    text-align: left;
+}
+
+    #profileinfo button {
+        width: 100%;
+        height: 70%;
+        margin-top: 30px;
+        background-color: #333;
+        border-radius: 8px;
+        color: #ffffff;
+        font-size: large;
+    }
+
+        #profileinfo button:hover {
+            background-color: #888;
+        }
+
+.moreinfo {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.sex {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.age {
+    grid-area: 1 / 4 / 2 / 6;
+}
+
+.moreinfo p {
+    width: 200;
+    margin: 10px;
+    outline: 1px solid #888;
+    outline-offset: 10px;
+    border-radius: 2px;
+}
+
+.activitycolumn {
+    width: 90%;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.activitylist {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-height: 1000px;
+}
+
+.activity {
+    display: grid;
+    width: 100%;
+    align-items: center;
+    grid-template-columns: repeat(12, 1fr);
+    outline: 1px solid #333;
+    grid-column-gap: 20px;
+    outline-offset: 10px;
+    border-radius: 2px;
+}
+
+.activityimg {
+    grid-column: span 2.5;
+    align-self: first baseline;
+}
+
+    .activityimg img {
+        width: 290px;
+        height: 160px;
+        object-fit: cover;
+        margin: 10px;
+    }
+
+.eventinfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.activityinfo {
+    grid-column: span 11;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.taglist {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    background-color: #333;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.datetime {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.time,
+.date {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+    outline: none;
+}
+
+.time {
+    width: 250px;
+}
+
+.date {
+    width: 60px;
+    text-align: center;
+}
+
+.member-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /* ดันรูปคนไปซ้าย ดันปุ่มไปขวา */
+    align-items: center;
+}
+
+.avatars {
+    display: flex;
+    align-items: center;
+}
+
+    /* ทริคทำรูปโปรไฟล์ซ้อนกัน */
+    .avatars img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-left: -10px;
+        object-fit: cover;
+    }
+
+        .avatars img:first-child {
+            margin-left: 0;
+        }
+
+.more-users {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border: 2px solid white;
+    margin-left: -10px;
+    z-index: 1;
+}
+
+.member-count {
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: auto;
+    text-align: left;
+}
+
+
+.ratinglist {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stars {
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.reviewblock h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #222;
+}
+
+.reviewbody {
+    margin: 0 0 25px 0;
+    color: #555;
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+
+.reviewblock {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 30%;
+    min-width: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewprofile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+    .reviewprofile img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+    }
+
+.reviewname h4,
+.reviewname p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.reviewname h4 {
+    font-size: 14px;
+    color: #444;
+}
+
+.reviewname p {
+    font-size: 13px;
+    color: #999;
+}
