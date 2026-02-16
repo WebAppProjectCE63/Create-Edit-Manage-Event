@@ -1,0 +1,77 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+#navbar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+  position: sticky;
+  top: 0;
+}
+
+#navitem {
+  margin-left: auto;
+  margin-right: 70px;
+}
+
+#navitem ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-self: flex-end;
+  gap: 5px;
+}
+
+#navitem ul li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+#navitem ul li a:hover {
+  background-color: #f5f5f5;
+}
+
+#navprofile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#navprofile img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
