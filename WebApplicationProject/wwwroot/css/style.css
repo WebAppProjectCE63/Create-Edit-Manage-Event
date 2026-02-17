@@ -155,11 +155,12 @@
 }
 
 .moreinfo p {
-    width: 200;
+    width: 90%;
     margin: 10px;
     outline: 1px solid #888;
     outline-offset: 10px;
     border-radius: 2px;
+    text-align: center;
 }
 
 .activitycolumn {
@@ -174,18 +175,21 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    max-height: 1000px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
 }
 
 .activity {
     display: grid;
     width: 100%;
     align-items: center;
+    padding: 20px;
     grid-template-columns: repeat(12, 1fr);
-    outline: 1px solid #333;
     grid-column-gap: 20px;
-    outline-offset: 10px;
-    border-radius: 2px;
+    border: 1px solid #333;
+    border-radius: 10px;
 }
 
 .activityimg {
@@ -205,6 +209,7 @@
     flex-direction: column;
     gap: 5px;
     margin-bottom: 5px;
+    flex-wrap: wrap;
 }
 
 .activityinfo {
@@ -212,11 +217,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .taglist {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .tag {
@@ -232,6 +239,7 @@
     gap: 10px;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .time,
@@ -306,6 +314,7 @@
 
 .rating {
     display: flex;
+    height: 400px;
     flex-direction: column;
     background-color: #f4f4f4;
     padding: 20px;
