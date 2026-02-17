@@ -8,7 +8,7 @@
         public string Image { get; set; }
         public string Location { get; set; }
         public DateTime DateTime { get; set; }
-        public List<string> Tag { get; set; }
+        public List<string> Tag { get; set; } = new List<string>();
         public int MaxParticipants { get; set; }
         public int CurrentParticipants { get; set; }
         public int UserHostId { get; set; }

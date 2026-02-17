@@ -12,3 +12,4 @@
         public List<EventParticipation> MyEvents { get; set; } = new List<EventParticipation>();
     }
 }
+ 
