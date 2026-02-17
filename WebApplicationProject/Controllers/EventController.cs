@@ -191,6 +191,10 @@ namespace WebApplicationProject.Controllers
                 MyEvents = new List<EventParticipation>()
             }
         };
+        public IActionResult Myevent()
+        {
+            return View(Event);
+        }
         public IActionResult Create()
         {
             return View();
