@@ -25,11 +25,19 @@
             <div class="moreinfo">
                 <div class="sex">
                     <h3>Sex</h3>
-                    <p>@Model.UserInfo.Sex</p>
+                    <p>@Model.UserInfo.Gender</p>
                 </div>
                 <div class="age">
                     <h3>Age</h3>
-                        <p>@Model.UserInfo.Age</p>
+                        @{
+                            var today = DateTime.Today;
+                            var age = today.Year - Model.UserInfo.Birthday.Year;
+                            if (Model.UserInfo.Birthday.Date > today.AddYears(-age))
+                            {
+                                age--;
+                            }
+                        }
+                        <p>@age</p>
                 </div>
             </div>
 

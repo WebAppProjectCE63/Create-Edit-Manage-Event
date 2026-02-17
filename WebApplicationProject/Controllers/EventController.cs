@@ -98,10 +98,10 @@ namespace WebApplicationProject.Controllers
             }
         };
 
-        // 2. จำลองข้อมูล User (อันเดิมที่คุณทำไว้ ถูกต้องแล้วครับ)
+        // 2. จำลองข้อมูล User (ฉบับอัปเดต เพิ่ม Gender & Birthday)
         static List<User> Users = new List<User>()
         {
-            // 👑 1. Host งานดนตรี (ID: 101)
+            // 👑 1. Host งานดนตรี (ID: 101) - ผู้ชาย วัยทำงาน
             new User
             {
                 Id = 101,
@@ -110,11 +110,13 @@ namespace WebApplicationProject.Controllers
                 FName = "ก้องเกียรติ",
                 SName = "ใจดี",
                 Email = "kong@music.com",
+                Gender = "Male", // ✅ เพิ่มเพศ
+                Birthday = new DateTime(1990, 5, 20), // ✅ เพิ่มวันเกิด (อายุ 36)
                 Image = "https://ui-avatars.com/api/?name=Kong+J&background=random&size=128",
                 MyEvents = new List<EventParticipation>()
             },
 
-            // 👑 2. Host งาน Workshop (ID: 102)
+            // 👑 2. Host งาน Workshop (ID: 102) - ผู้หญิง ศิลปิน
             new User
             {
                 Id = 102,
@@ -123,11 +125,13 @@ namespace WebApplicationProject.Controllers
                 FName = "ปั้นจั่น",
                 SName = "งานละเอียด",
                 Email = "pun@art.com",
+                Gender = "Female", // ✅ เพิ่มเพศ
+                Birthday = new DateTime(1995, 8, 15), // ✅ เพิ่มวันเกิด (อายุ 31)
                 Image = "https://ui-avatars.com/api/?name=Pun+N&background=random&size=128",
                 MyEvents = new List<EventParticipation>()
             },
 
-            // 👤 3. สมชาย (ID: 103) -> เป็น "ตัวจริง" ทั้ง 2 งาน
+            // 👤 3. สมชาย (ID: 103) - ผู้ชาย (ตัวจริงทุกงาน)
             new User
             {
                 Id = 103,
@@ -136,11 +140,13 @@ namespace WebApplicationProject.Controllers
                 FName = "สมชาย",
                 SName = "เข็มกลัด",
                 Email = "somchai@test.com",
+                Gender = "Male", // ✅ เพิ่มเพศ
+                Birthday = new DateTime(1985, 1, 1), // ✅ เพิ่มวันเกิด (อายุ 41)
                 Image = "https://ui-avatars.com/api/?name=Somchai+K&background=0D8ABC&color=fff&size=128",
                 MyEvents = new List<EventParticipation>()
             },
 
-            // 👤 4. แนนซี่ (ID: 104) -> เป็น "ตัวสำรอง" งานดนตรี
+            // 👤 4. แนนซี่ (ID: 104) - ผู้หญิง (ตัวสำรองงานดนตรี)
             new User
             {
                 Id = 104,
@@ -149,11 +155,13 @@ namespace WebApplicationProject.Controllers
                 FName = "แนนซี่",
                 SName = "มีตังค์",
                 Email = "nancy@test.com",
+                Gender = "Female", // ✅ เพิ่มเพศ
+                Birthday = new DateTime(2000, 12, 25), // ✅ เพิ่มวันเกิด (วัยรุ่น อายุ 25)
                 Image = "https://ui-avatars.com/api/?name=Nancy+M&background=FFC107&size=128",
                 MyEvents = new List<EventParticipation>()
             },
 
-            // 👤 5. ปิติ (ID: 105) -> เป็น "ตัวจริง" งานดนตรี
+            // 👤 5. ปิติ (ID: 105) - ผู้ชาย (ตัวจริงงานดนตรี)
             new User
             {
                 Id = 105,
@@ -162,11 +170,13 @@ namespace WebApplicationProject.Controllers
                 FName = "ปิติ",
                 SName = "พอใจ",
                 Email = "piti@test.com",
+                Gender = "Male", // ✅ เพิ่มเพศ
+                Birthday = new DateTime(1998, 3, 10), // ✅ เพิ่มวันเกิด (อายุ 28)
                 Image = "https://ui-avatars.com/api/?name=Piti+P&background=8E44AD&color=fff&size=128",
                 MyEvents = new List<EventParticipation>()
             },
 
-            // 👤 6. ชูใจ (ID: 106) -> เป็น "ตัวสำรอง" งาน Workshop
+            // 👤 6. ชูใจ (ID: 106) - LGBTQ+ (ตัวสำรองงาน Workshop)
             new User
             {
                 Id = 106,
@@ -175,6 +185,8 @@ namespace WebApplicationProject.Controllers
                 FName = "ชูใจ",
                 SName = "เลิศล้ำ",
                 Email = "chujai@test.com",
+                Gender = "LGBTQ+", // ✅ เพิ่มเพศทางเลือก
+                Birthday = new DateTime(1992, 11, 5), // ✅ เพิ่มวันเกิด (อายุ 33)
                 Image = "https://ui-avatars.com/api/?name=Chujai+L&background=E74C3C&color=fff&size=128",
                 MyEvents = new List<EventParticipation>()
             }

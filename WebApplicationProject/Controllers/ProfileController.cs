@@ -14,8 +14,8 @@ namespace WebApplicationProject.Controllers
                 FName = "สมชาย",
                 SName = "ใจดี",
                 Email = "somchai@email.com",
-                Sex   = "Men",
-                Age   = 35,
+                Gender   = "Men",
+                Birthday = new DateTime(1990, 5, 20),
                 Image = "https://i.pravatar.cc/150?img=11"
             };
 
