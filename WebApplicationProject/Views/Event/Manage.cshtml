@@ -13,21 +13,23 @@
         <img id="prevImage" src=@Model.Image />
     </div>
     <div class="eventDetail">
-        <h4 id="prevTitle"><b>ชื่อ</b>: @Model.Title</h4>
-        <p id="prevDesc"><b>คำอธิบาย:</b> @Model.Description</p>
-        <div id="prevTags">
-            <b>แท็ก:</b>
-            @if (Model.Tag != null)
-            {
-                foreach (var tag in Model.Tag)
+        <h4><b>ชื่อ: </b><span id="prevTitle">@Model.Title</span></h4>
+        <p><b>คำอธิบาย: </b><span id="prevDesc">@Model.Description</span></p>
+        <div>
+            <b>แท็ก: </b>
+            <span id="prevTags">
+                @if (Model.Tag != null)
                 {
-                    <span class="tag-badge">@tag</span>
+                    foreach (var tag in Model.Tag)
+                    {
+                        <span class="tag-badge">#@tag</span>
+                    }
                 }
-            }
+            </span>
         </div>
-        <div class="meta-info"><b>รับ:</b> <span id="prevCount">@Model.MaxParticipants</span> คน</div>
-        <div class="meta-info"><span id="prevDate"><b>เวลา:</b> @Model.DateTime</span></div>
-        <div class="meta-info"><span id="prevLocation"><b>สถานที่:</b> @Model.Location</span></div>
+        <div class="meta-info"><b>รับ: </b><span id="prevMaxParti">@Model.MaxParticipants</span> คน</div>
+        <div class="meta-info"><b>วันที่ - เวลา: </b><span id="prevDate">@Model.DateTime.ToString("d MMMM yyyy - HH:MM น.", new System.Globalization.CultureInfo("th-TH"))</span></div>
+        <div class="meta-info"><b>สถานที่: </b><span id="prevLocation">@Model.Location</span></div>
     </div>
 </div>
 <div class="mngParti">
