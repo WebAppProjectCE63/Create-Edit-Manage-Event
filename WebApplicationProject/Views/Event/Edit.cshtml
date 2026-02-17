@@ -1,61 +1,5 @@
 ﻿@model WebApplicationProject.Models.Event
-<style>
-    .head{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #f4f4f4;
-        height: 200px;
-        width: 100%;
-        margin: 0;
-    }
-
-    h3{
-        margin: 20px 0;
-    }
-
-    .eventToEdit {
-        border: 1px solid;
-        border-radius: 8px;
-        padding: 10px;
-        display: flex;
-        gap: 20px;
-    }
-    .eventImage Img{
-        flex: 1;
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-    .eventDetail{
-        flex: 2;
-    }
-    .tag-badge{
-        background-color: black;
-        color: white;
-        padding: 1px;
-        border-radius: 5px;
-    }
-    .editEvent {
-        border: 1px solid;
-        border-radius: 8px;
-        padding: 10px;
-    }
-
-    .editEvent input{
-        flex: 2;
-        width: 100%;
-        box-sizing:border-box;
-    }
-    
-    .editEvent button{
-        margin-top: 10px;
-        background-color: black;
-        color: white;
-    }
-</style>
+<link rel="stylesheet" href="~/css/eventPrev_eventForm.css" asp-append-version="true" />
 @section Banner{
     <div class="head">
         <h1>Edit Event</h1>
@@ -63,57 +7,62 @@
     </div>
 }
 <h3>กิจกรรมที่แก้ไข</h3>
-<div id="eventToEdit" class="eventToEdit">
+<div id="eventPrev" class="eventPrev">
     <div class="eventImage">
         <img id="prevImage" src=@Model.Image />
     </div>
     <div class="eventDetail">
-        <h4 id="prevTitle"><b>ชื่อ</b>: @Model.Title</h4>
-        <p id="prevDesc"><b>รายละเอียด:</b> @Model.Description</p>
-        <div id="prevTags">
-            <b>แท็ก:</b>
-            @if (Model.Tag != null)
-            {
-                foreach (var tag in Model.Tag)
+        <h4><b>ชื่อ: </b><span id="prevTitle">@Model.Title</span></h4>
+        <p><b>คำอธิบาย: </b><span id="prevDesc">@Model.Description</span></p>
+        <div>
+            <b>แท็ก: </b>
+            <span id="prevTags">
+                @if (Model.Tag != null)
                 {
-                    <span class="tag-badge">@tag</span>
+                    foreach (var tag in Model.Tag)
+                    {
+                        <span class="tag-badge">#@tag</span>
+                    }
                 }
-            }
+            </span>
         </div>
-        <div class="meta-info"><b>รับ:</b> <span id="prevCount">@Model.MaxParticipants</span> คน</div>
-        <div class="meta-info"><span id="prevDate"><b>เวลา:</b> @Model.DateTime</span></div>
-        <div class="meta-info"><span id="prevLocation"><b>สถานที่:</b> @Model.Location</span></div>
+        <div class="meta-info"><b>รับ: </b><span id="prevCount">@Model.MaxParticipants</span> คน</div>
+        <div class="meta-info"><b>วันที่ - เวลา: </b><span id="prevDate">@Model.DateTime.ToString("d MMMM yyyy - HH:MM น.", new System.Globalization.CultureInfo("th-TH"))</span></div>
+        <div class="meta-info"><b>สถานที่: </b><span id="prevLocation">@Model.Location</span></div>
     </div>
 </div>
 <h3>ฟอร์มแก้ไขข้อมูล</h3>
-<form asp-action="Edit" method="post" class="editEvent"id="editEvent">
+<form asp-action="Edit" method="post" class="eventForm" id="eventForm">
     <div class="title">
         <label>ชื่อ Event:</label>
-        <input asp-for="Title" />
+        <input asp-for="Title" id="inputTitle" />
     </div>
     <div class="description">
         <label>คำอธิบาย</label>
-        <input asp-for="Description" />
+        <input asp-for="Description" id="inputDesc" />
     </div>
     <div class="imageLink">
         <label>ใส่ลิงก์รูปภาพ</label>
-        <input asp-for="Image" />
+        <input asp-for="Image" id="inputImg" />
     </div>
     <div class="tag">
-        <label>ใส่ Tag</label>
-        <input asp-for="Tag" />
+        <label>ใส่ Tag (คั่นด้วยลูกน้ำ)</label>
+        <input name="Tag" id="inputTag" value="@string.Join(",", Model.Tag)"/>
     </div>
     <div class="maxParti">
         <label>จำนวนคน</label>
-        <input asp-for="MaxParticipants" />
+        <input asp-for="MaxParticipants" id="inputMaxParti" />
     </div>
     <div class="time">
         <label>เวลา</label>
-        <input asp-for="DateTime" />
+        <input asp-for="DateTime" id="inputDateTime" type="datetime-local" value="@Model.DateTime.ToString("yyyy-MM-ddTHH:MM", System.Globalization.CultureInfo.InvariantCulture)" />
     </div>
     <div class="location">
         <label>สถานที่</label>
-        <input asp-for="Location" />
+        <input asp-for="Location" id="inputLocation" />
     </div>
     <button type="submit">บันทึก</button>
 </form>
+@section Scripts {
+    <script src="~/js/showPreview.js" asp-append-version="true"></script>
+}
