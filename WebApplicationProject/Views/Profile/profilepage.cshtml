@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model WebApplicationProject.Models.ProfilePageViewModel
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -16,19 +17,19 @@
 
     <div id="profilebanner">
         <div id="profileimg">
-            <img src="https://i.pravatar.cc/150?img=10" alt="Profile">
+                <img src=@Model.UserInfo.Image alt="Profile">
         </div>
         <div id="profileinfo">
-            <h1>ชื่อ</h1>
-            <p>Description</p>
+                <h1>@Model.UserInfo.FName @Model.UserInfo.SName</h1>
+                <p>@Model.UserInfo.Email</p>
             <div class="moreinfo">
                 <div class="sex">
                     <h3>Sex</h3>
-                    <p>Men</p>
+                    <p>@Model.UserInfo.Sex</p>
                 </div>
                 <div class="age">
                     <h3>Age</h3>
-                    <p>20</p>
+                        <p>@Model.UserInfo.Age</p>
                 </div>
             </div>
 
@@ -39,177 +40,125 @@
         <h2>Recent Host Activity</h2>
         <p>กิจกรรมที่เคยสร้าง</p>
         <div class="activitylist">
-            <div class="activity">
-                <div class="activityimg">
-                    <img src="https://www.nupress.grad.nu.ac.th/wp-content/uploads/2018/11/NU-BOOK-FAIR-2018-4.jpg"
-                         alt="Event">
+    @foreach (var ev in Model.HostedEvents)
+                    {
+                        <div class="activity">
+                            <div class="activityimg">
+                                <img src=@ev.Image alt="Event">
+                            </div>
+                            <div class="activityinfo">
+                            <h2>@ev.Title</h2>
+                            <p>@ev.Description</p>
+                                <div class="eventinfo">
+                                    <div class="taglist">
+                                        @if (ev.Tag != null && ev.Tag.Any())
+                                        {
+                                            @foreach (var tagName in ev.Tag)
+                                            {
+                                                <span class="tag">#@tagName</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="tag">ไม่มีแท็ก</span>
+                                        }
+                                    </div>
+                                    <div class="datetime">
+                                    <span class="time">>@ev.DateTime.ToString("HH:mm")</span>
+                                    <span class="date">@ev.DateTime.ToString("dd")</span>   
+                                    <span class="date">@ev.DateTime.ToString("MMM")</span>     
+                                    <span class="date">@ev.DateTime.ToString("yyyy")</span>
+                                    </div>
+                                </div>
+                                <div class="member-row">
+                                    <div class="avatars">
+                                        <img src="https://i.pravatar.cc/150?img=11" alt="User 1">
+                                        <img src="https://i.pravatar.cc/150?img=12" alt="User 2">
+                                        <img src="https://i.pravatar.cc/150?img=13" alt="User 3">
+                                        <span class="more-users">+1</span>
+                                    </div>
+                                <button class="member-count">@ev.CurrentParticipants / @ev.MaxParticipants Members</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="activityinfo">
-                    <h2>Event</h2>
-                    <p>Description</p>
-                    <div class="eventinfo">
-                        <div class="taglist">
-                            <span class="tag">✓ tag</span>
-                            <span class="tag">Tag ✕</span>
-                        </div>
-                        <div class="datetime">
-                            <span class="time">10:00 - 12:00</span>
-                            <span class="date">15</span>
-                            <span class="date">Feb</span>
-                            <span class="date">2026</span>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="avatars">
-                            <img src="https://i.pravatar.cc/150?img=11" alt="User 1">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="User 2">
-                            <img src="https://i.pravatar.cc/150?img=13" alt="User 3">
-                            <span class="more-users">+1</span>
-                        </div>
-                        <button class="member-count">30/60 Members</button>
-                    </div>
-                </div>
-            </div>
-            <div class="activity">
-                <div class="activityimg">
-                    <img src="https://eventscase.com/blog/wp-content/uploads/2024/09/como-organizar-un-evento-corporativo-conferencia-768x412.webp"
-                         alt="Event">
-                </div>
-                <div class="activityinfo">
-                    <h2>Event</h2>
-                    <p>Description</p>
-                    <div class="eventinfo">
-                        <div class="taglist">
-                            <span class="tag">✓ tag</span>
-                            <span class="tag">Tag ✕</span>
-                        </div>
-                        <div class="datetime">
-                            <span class="time">10:00 - 12:00</span>
-                            <span class="date">15</span>
-                            <span class="date">Feb</span>
-                            <span class="date">2026</span>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="avatars">
-                            <img src="https://i.pravatar.cc/150?img=11" alt="User 1">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="User 2">
-                            <img src="https://i.pravatar.cc/150?img=13" alt="User 3">
-                            <span class="more-users">+1</span>
-                        </div>
-                        <button class="member-count">30/60 Members</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="activitycolumn">
         <h2>Recent Join Activity</h2>
         <p>กิจกรรมที่เคยเข้าร่วม</p>
         <div class="activitylist">
-            <div class="activity">
-                <div class="activityimg">
-                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=random&color=fff&size=128"
-                         alt="Profile">
-                </div>
-                <div class="activityinfo">
-                    <h2>Event</h2>
-                    <p>Description</p>
-                    <div class="eventinfo">
-                        <div class="taglist">
-                            <span class="tag">✓ tag</span>
-                            <span class="tag">Tag ✕</span>
+                @foreach (var ev in Model.JoinedEvents)
+                {
+                    <div class="activity">
+                        <div class="activityimg">
+                            <img src=@ev.Image alt="Event">
                         </div>
-                        <div class="datetime">
-                            <span class="time">10:00 - 12:00</span>
-                            <span class="date">15</span>
-                            <span class="date">Feb</span>
-                            <span class="date">2026</span>
+                        <div class="activityinfo">
+                            <h2>@ev.Title</h2>
+                            <p>@ev.Description</p>
+                            <div class="eventinfo">
+                                <div class="taglist">
+                                    @if (ev.Tag != null && ev.Tag.Any())
+                                    {
+                                        @foreach (var tagName in ev.Tag)
+                                        {
+                                            <span class="tag">#@tagName</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="tag">ไม่มีแท็ก</span>
+                                    }
+                                </div>
+                                <div class="datetime">
+                                    <span class="time">>@ev.DateTime.ToString("HH:mm")</span>
+                                    <span class="date">@ev.DateTime.ToString("dd")</span>
+                                    <span class="date">@ev.DateTime.ToString("MMM")</span>
+                                    <span class="date">@ev.DateTime.ToString("yyyy")</span>
+                                </div>
+                            </div>
+                            <div class="member-row">
+                                <div class="avatars">
+                                    <img src="https://i.pravatar.cc/150?img=11" alt="User 1">
+                                    <img src="https://i.pravatar.cc/150?img=12" alt="User 2">
+                                    <img src="https://i.pravatar.cc/150?img=13" alt="User 3">
+                                    <span class="more-users">+1</span>
+                                </div>
+                                <button class="member-count">@ev.CurrentParticipants / @ev.MaxParticipants Members</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="member-row">
-                        <div class="avatars">
-                            <img src="https://i.pravatar.cc/150?img=11" alt="User 1">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="User 2">
-                            <img src="https://i.pravatar.cc/150?img=13" alt="User 3">
-                            <span class="more-users">+1</span>
-                        </div>
-                        <button class="member-count">30/60 Members</button>
-                    </div>
-                </div>
+                }
             </div>
-            <div class="activity">
-                <div class="activityimg">
-                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=random&color=fff&size=128"
-                         alt="Profile">
-                </div>
-                <div class="activityinfo">
-                    <h2>Event</h2>
-                    <p>Description</p>
-                    <div class="eventinfo">
-                        <div class="taglist">
-                            <span class="tag">✓ tag</span>
-                            <span class="tag">Tag ✕</span>
-                        </div>
-                        <div class="datetime">
-                            <span class="time">10:00 - 12:00</span>
-                            <span class="date">15</span>
-                            <span class="date">Feb</span>
-                            <span class="date">2026</span>
-                        </div>
-                    </div>
-                    <div class="member-row">
-                        <div class="avatars">
-                            <img src="https://i.pravatar.cc/150?img=11" alt="User 1">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="User 2">
-                            <img src="https://i.pravatar.cc/150?img=13" alt="User 3">
-                            <span class="more-users">+1</span>
-                        </div>
-                        <button class="member-count">30/60 Members</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="rating">
         <h1>Rating</h1>
         <div class="ratinglist">
+            @foreach (var rw in Model.Reviews)
+            {
             <div class="reviewblock">
-                <div class="stars">☆☆☆☆☆</div>
-                <h2>Review title</h2>
-                <p class="reviewbody">Review body</p>
+                <div class="stars">
+                            @for (int i = 0; i < rw.stars; i++)
+                            {
+                                <span>★</span>
+                            }
+                            @for (int i = rw.stars; i < 5; i++)
+                            {
+                                <span>☆</span>
+                            }
+                </div>
+                <h2>@rw.reviewtitle</h2>
+                <p class="reviewbody">@rw.reviewbody</p>
                 <div class="reviewprofile">
-                    <img src="https://i.pravatar.cc/150?img=20" alt="Profile">
+                    <img src=@rw.Author.Image alt="Profile">
                     <div class="reviewname">
-                        <h4>ชื่อ</h4>
-                        <p>นามสกุล</p>
+                        <h4>@rw.Author.FName</h4>
+                        <p>@rw.Author.SName</p>
                     </div>
                 </div>
             </div>
-            <div class="reviewblock">
-                <div class="stars">☆☆☆☆☆</div>
-                <h2>Review title</h2>
-                <p class="reviewbody">Review body</p>
-                <div class="reviewprofile">
-                    <img src="https://i.pravatar.cc/150?img=20" alt="Profile">
-                    <div class="reviewname">
-                        <h4>ชื่อ</h4>
-                        <p>นามสกุล</p>
-                    </div>
-                </div>
-            </div>
-            <div class="reviewblock">
-                <div class="stars">☆☆☆☆☆</div>
-                <h2>Review title</h2>
-                <p class="reviewbody">Review body</p>
-                <div class="reviewprofile">
-                    <img src="https://i.pravatar.cc/150?img=20" alt="Profile">
-                    <div class="reviewname">
-                        <h4>ชื่อ</h4>
-                        <p>นามสกุล</p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
     <script src="app.js"></script>
