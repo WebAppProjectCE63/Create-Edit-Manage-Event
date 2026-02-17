@@ -1,0 +1,104 @@
+﻿@model IEnumerable<WebApplicationProject.Models.Event>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/homestyle.css">
+</head>
+
+@section Banner{
+<body>
+        <div class="homepage-box">
+        <h2>Homepage</h2>
+        <p>Subtitle</p>
+    </div>
+    <div class="filter">
+        <button class="add-btn">+</button>
+        <input type="text" placeholder="Value" class="search">
+        <select class="sort">
+            <option>Value</option>
+            <option>Name</option>
+            <option>Date</option>
+        </select>
+        <input type="text" placeholder="DD" class="date">
+        <input type="text" placeholder="MM" class="date">
+        <input type="text" placeholder="YYYY" class="date">
+    </div>
+    <div class="rec-event">
+        <h2>Recommended Events</h2>
+        <p>Subheading</p>
+    </div>
+    <div class="event-list">
+    <div class="Event">
+        <div class="event-card">
+            <div class="event-image"></div>
+
+            <div class="event-main">
+                <h3 class="event-title">Event</h3>
+                <p class="event-desc">
+                    desc
+                </p>
+
+                <div class="event-chips">
+                    <button class="chip">✓ Label</button>
+                    <button class="chip">Tag x</button>
+                </div>
+
+                <div class="event-row">
+                    <select>
+                        <option selected disabled>เวลา</option>
+                        <option>เช้า</option>
+                        <option>บ่าย</option>
+                        <option>เย็น</option>
+                    </select>
+
+                    <input type="text" placeholder="วัน">
+                    <input type="text" placeholder="เดือน">
+                    <input type="text" placeholder="ปี">
+                </div>
+
+                <div class="event-actions">
+                    <button class="view-btn">View Info</button>
+                </div>
+            </div>
+
+            <div class="members">30/60 Members</div>
+        </div>
+    </div>
+    <div class="Event-ex">
+        <div class="eventcard-ex">
+            <div class="eventimage-ex"></div>
+            <div class="eventex-main">
+                <h3 class="eventtile-ex">Event (เมื่อขยาย)</h3>
+                <p class="eventdesc-ex">
+                    desc
+                </p>
+                <div class="event-chips">
+                    <button class="chip">✓ Label</button>
+                    <button class="chip">Tag x</button>
+                </div>
+                <div class="event-row">
+                    <select>
+                        <option selected disabled>เวลา</option>
+                        <option>เช้า</option>
+                        <option>บ่าย</option>
+                        <option>เย็น</option>
+                    </select>
+
+                    <input type="text" placeholder="วัน">
+                    <input type="text" placeholder="เดือน">
+                    <input type="text" placeholder="ปี">
+                </div>
+                <div class="join">
+                    <button class="join-btn">Join</button>
+                </div>
+
+            </div>
+            <div class="members-ex">30/60 Members</div>
+        </div>
+     </div>
+     </div>
+</body>
+}
+</html>
