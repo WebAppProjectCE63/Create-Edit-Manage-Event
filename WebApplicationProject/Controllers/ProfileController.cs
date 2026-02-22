@@ -28,7 +28,7 @@ namespace WebApplicationProject.Controllers
                     Title = "งานหนังสือแห่งชาติ",
                     Description = "ไปเดินซื้อหนังสือกันเถอะ",
                     DateTime = new DateTime(2026, 2, 15, 10, 0, 0),
-                    Tag = new List<string> { "Education", "Book" },
+                    Tags = new List<string> { "Education", "Book" },
                     MaxParticipants = 60,
                     CurrentParticipants = 30,
                     Image = "https://www.nupress.grad.nu.ac.th/wp-content/uploads/2018/11/NU-BOOK-FAIR-2018-4.jpg"
@@ -39,7 +39,7 @@ namespace WebApplicationProject.Controllers
                     Title = "สัมมนาโปรแกรมเมอร์",
                     Description = "แลกเปลี่ยนความรู้ด้าน .NET Core",
                     DateTime = new DateTime(2026, 3, 20, 13, 0, 0),
-                    Tag = new List<string> { "IT", "Seminar" },
+                    Tags = new List<string> { "IT", "Seminar" },
                     MaxParticipants = 100,
                     CurrentParticipants = 45,
                     Image = "https://eventscase.com/blog/wp-content/uploads/2024/09/como-organizar-un-evento-corporativo-conferencia-768x412.webp"
@@ -54,7 +54,7 @@ namespace WebApplicationProject.Controllers
                     Title = "สัมมนาโปรแกรมเมอร์",
                     Description = "แลกเปลี่ยนความรู้ด้าน .NET Core",
                     DateTime = new DateTime(2026, 3, 20, 13, 0, 0),
-                    Tag = new List<string> { "IT", "Seminar" },
+                    Tags = new List<string> { "IT", "Seminar" },
                     MaxParticipants = 100,
                     CurrentParticipants = 45,
                     Image = "https://eventscase.com/blog/wp-content/uploads/2024/09/como-organizar-un-evento-corporativo-conferencia-768x412.webp"

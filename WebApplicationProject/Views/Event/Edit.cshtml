@@ -17,9 +17,9 @@
         <div>
             <b>แท็ก: </b>
             <span id="prevTags">
-                @if (Model.Tag != null)
+                @if (Model.Tags != null)
                 {
-                    foreach (var tag in Model.Tag)
+                    foreach (var tag in Model.Tags)
                     {
                         <span class="tag-badge">#@tag</span>
                     }
@@ -32,7 +32,9 @@
     </div>
 </div>
 <h3>ฟอร์มแก้ไขข้อมูล</h3>
-<form asp-action="Edit" method="post" class="eventForm" id="eventForm">
+<form asp-action="Edit" method="post" class="eventForm" id="eventForm" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Image" id="oldImageUrl" />
     <div class="title">
         <label>ชื่อ Event:</label>
         <input asp-for="Title" id="inputTitle" />
@@ -41,13 +43,13 @@
         <label>คำอธิบาย</label>
         <input asp-for="Description" id="inputDesc" />
     </div>
-    <div class="imageLink">
-        <label>ใส่ลิงก์รูปภาพ</label>
-        <input asp-for="Image" id="inputImg" />
+    <div class="imageUpload">
+        <label>อัพโหลดรูปภาพ</label>
+        <input type="file" name="uploadImage" id="inputImg" class="form-control" accept="image/*" />
     </div>
     <div class="tag">
         <label>ใส่ Tag (คั่นด้วยลูกน้ำ)</label>
-        <input name="Tag" id="inputTag" value="@string.Join(",", Model.Tag)"/>
+        <input name="Tag" id="inputTag" value="@string.Join(",", Model.Tags)"/>
     </div>
     <div class="maxParti">
         <label>จำนวนคน</label>

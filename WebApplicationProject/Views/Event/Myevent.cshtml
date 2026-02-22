@@ -83,9 +83,9 @@
                             <h3>@ev.Title</h3>
                             <p class="desc">@ev.Description</p>
                                 <div class="tags">
-                                @if (ev.Tag != null && ev.Tag.Any())
+                                @if (ev.Tags != null && ev.Tags.Any())
                                 {
-                                    @foreach (var tagName in ev.Tag)
+                                    @foreach (var tagName in ev.Tags)
                                     {
                                         <span class="tag black">#@tagName</span>
                                     }
