@@ -46,15 +46,15 @@ h3 {
     padding: 10px;
 }
 
-    .eventForm input {
-        flex: 2;
-        width: 100%;
-        box-sizing: border-box;
-    }
+.eventForm input {
+    flex: 2;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    .eventForm button {
-        margin-top: 10px;
-        background-color: black;
-        color: white;
-        border-radius: 8px;
-    }
+.eventForm button {
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+}

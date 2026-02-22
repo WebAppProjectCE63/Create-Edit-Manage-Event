@@ -59,9 +59,9 @@
                             <p>@ev.Description</p>
                                 <div class="eventinfo">
                                     <div class="taglist">
-                                        @if (ev.Tag != null && ev.Tag.Any())
+                                        @if (ev.Tags != null && ev.Tags.Any())
                                         {
-                                            @foreach (var tagName in ev.Tag)
+                                            @foreach (var tagName in ev.Tags)
                                             {
                                                 <span class="tag">#@tagName</span>
                                             }
@@ -107,9 +107,9 @@
                             <p>@ev.Description</p>
                             <div class="eventinfo">
                                 <div class="taglist">
-                                    @if (ev.Tag != null && ev.Tag.Any())
+                                    @if (ev.Tags != null && ev.Tags.Any())
                                     {
-                                        @foreach (var tagName in ev.Tag)
+                                        @foreach (var tagName in ev.Tags)
                                         {
                                             <span class="tag">#@tagName</span>
                                         }

@@ -6,7 +6,7 @@
         <p>สร้างกิจกรรม</p>
     </div>
 }
-<form asp-action="Create" method="post" class="eventForm" id="eventForm">
+<form asp-action="Create" method="post" class="eventForm" id="eventForm" enctype="multipart/form-data">
     <div class="title">
         <label>ชื่อ Event:</label>
         <input asp-for="Title" id="inputTitle" placeholder="เช่น งานดนตรีในสวน, ติวหนังสือสอบปลายภาค" />
@@ -15,9 +15,9 @@
         <label>คำอธิบาย</label>
         <input asp-for="Description" id="inputDesc" placeholder="เช่น รายละเอียดกิจกรรม สิ่งที่ต้องเตรียมมา..." />
     </div>
-    <div class="imageLink">
-        <label>ใส่ลิงก์รูปภาพ</label>
-        <input asp-for="Image" id="inputImg" placeholder="เช่น https://example.com/image.jpg" />
+    <div class="imageUpload">
+        <label>อัพโหลดรูปภาพ</label>
+        <input type="file" name="uploadImage" id="inputImg" class="form-control" accept="image/*" />
     </div>
     <div class="tag">
         <label>ใส่ Tag (คั่นด้วยลูกน้ำ)</label>

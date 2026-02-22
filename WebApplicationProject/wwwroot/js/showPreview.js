@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     originalData = {
         Title: inputTitle.value,
         Desc: inputDesc.value,
-        Img: inputImg.value,
+        Img: document.getElementById("oldImageUrl") ? document.getElementById("oldImageUrl").value : "",
         Tag: inputTag.value,
         MaxParti: inputMaxParti.value,
         DateTime: inputDateTime.value,
@@ -44,12 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
         prevDesc.innerHTML = this.value
     });
 
-    inputImg.addEventListener("input", function () {
-        if (!this.value) {
+    inputImg.addEventListener("change", function () {
+        const file = this.files[0];
+
+        if (file) {
+            prevImage.src = URL.createObjectURL(file);
+        } else {
             prevImage.src = "https://img2.pic.in.th/image-icon-symbol-design-illustration-vector.md.jpg";
-            return;
         }
-        prevImage.src = this.value
     });
 
     inputTag.addEventListener("input", function () {
@@ -100,19 +102,23 @@ document.addEventListener("DOMContentLoaded", function () {
     resetbutton.addEventListener("click", function () {
         if (inputTitle) inputTitle.value = originalData.Title;
         if (inputDesc) inputDesc.value = originalData.Desc;
-        if (inputImg) inputImg.value = originalData.Img;
         if (inputTag) inputTag.value = originalData.Tag;
         if (inputMaxParti) inputMaxParti.value = originalData.MaxParti;
         if (inputDateTime) inputDateTime.value = originalData.DateTime;
         if (inputLocation) inputLocation.value = originalData.Location;
-
+        if (inputImg) {
+            inputImg.value = "";
+        }
+        if (prevImage) {
+            prevImage.src = originalData.Img ? originalData.Img : "https://img2.pic.in.th/image-icon-symbol-design-illustration-vector.md.jpg";
+        }
         const event = new Event('input');
         if (inputTitle) inputTitle.dispatchEvent(event);
         if (inputDesc) inputDesc.dispatchEvent(event);
-        if (inputImg) inputImg.dispatchEvent(event);
         if (inputTag) inputTag.dispatchEvent(event);
         if (inputMaxParti) inputMaxParti.dispatchEvent(event);
         if (inputDateTime) inputDateTime.dispatchEvent(event);
         if (inputLocation) inputLocation.dispatchEvent(event);
     })
+    if (inputTag) inputTag.dispatchEvent(new Event('input'));
 });
