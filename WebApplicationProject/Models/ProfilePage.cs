@@ -15,7 +15,6 @@
         public User UserInfo { get; set; }
         public List<Event> HostedEvents { get; set; }
         public List<Event> JoinedEvents { get; set; }
-
         public List<Review> Reviews { get; set; }
     }
 }

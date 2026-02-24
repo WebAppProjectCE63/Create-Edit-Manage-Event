@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplicationProject.Models;
-
+using System.Net.Http;
+using System.Text.Json;
+using System.IO;
 namespace WebApplicationProject.Controllers
 {
     public class ProfileController : Controller
     {
-        public IActionResult profilepage()
-        {
-            // จำลองข้อมูล User 
-            var userData = new User
+        static List<User> Users = new List<User>()
             {
+                new User
+                {
                 Id = 1,
                 FName = "สมชาย",
                 SName = "ใจดี",
@@ -17,8 +18,33 @@ namespace WebApplicationProject.Controllers
                 Gender   = "Men",
                 Birthday = new DateTime(1990, 5, 20),
                 Image = "https://i.pravatar.cc/150?img=11"
+                },
+                new User
+                {
+                    Id = 101,
+                    Username = "music_host",
+                    FName = "ก้องเกียรติ",
+                    SName = "ใจดี",
+                    Email = "kong@music.com",
+                    Gender = "Male",
+                    Birthday = new DateTime(1990, 5, 20),
+                    Image = "https://ui-avatars.com/api/?name=Kong+J&background=random&size=128"
+                },
+                new User
+                {
+                    Id = 102,
+                    Username = "art_host",
+                    FName = "ปั้นจั่น",
+                    SName = "งานละเอียด",
+                    Email = "pun@art.com",
+                    Gender = "Female",
+                    Birthday = new DateTime(1995, 8, 15),
+                    Image = "https://ui-avatars.com/api/?name=Pun+N&background=random&size=128"
+                }
             };
-
+        public IActionResult profilepage(int id = 1)
+        {
+            // จำลองข้อมูล User 
             // จำลองข้อมูลรายการ Event
             var joineventList = new List<Event>
             {
@@ -96,13 +122,62 @@ namespace WebApplicationProject.Controllers
             // นำข้อมูลทั้ง มาใส่ใน ViewModel
             var viewModel = new ProfilePageViewModel
             {
-                UserInfo = userData,
+                UserInfo = Users.FirstOrDefault(u => u.Id == id),
                 HostedEvents = hosteventList,
                 JoinedEvents = joineventList,
                 Reviews = reviewList
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(User editUser, IFormFile uploadImage)
+        {
+            var ogUser = Users.FirstOrDefault(u => u.Id == editUser.Id);
+
+            if (ogUser != null)
+            {
+                string newImageUrl = await UploadImageAsync(uploadImage);
+                if (newImageUrl != null)
+                {
+                    ogUser.Image = newImageUrl;
+                }
+
+                ogUser.FName = editUser.FName;
+                ogUser.SName = editUser.SName;
+                ogUser.Email = editUser.Email;
+            }
+
+            return RedirectToAction("profilepage", new { id = ogUser.Id });
+        }
+
+        private async Task<string> UploadImageAsync(IFormFile uploadImage)
+        {
+            if (uploadImage == null || uploadImage.Length == 0)
+                return null;
+
+            using var ms = new MemoryStream();
+            await uploadImage.CopyToAsync(ms);
+            string base64Image = Convert.ToBase64String(ms.ToArray());
+
+            string apiKey = "d0389bb796bb619e0b8f1503873fbc8a";
+            using var client = new HttpClient();
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("image", base64Image)
+            });
+
+            var response = await client.PostAsync($"https://api.imgbb.com/1/upload?key={apiKey}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+                return doc.RootElement.GetProperty("data").GetProperty("url").GetString();
+            }
+
+            return null; // ถ้าอัปโหลดล้มเหลว
         }
     }
 }
