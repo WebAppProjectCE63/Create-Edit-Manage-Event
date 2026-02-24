@@ -1,14 +1,8 @@
 ﻿@model WebApplicationProject.Models.ProfilePageViewModel
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Profile Page</title>
-    <link rel="stylesheet" href="~/css/style.css">
-</head>
+<link rel="stylesheet" href="~/css/style.css">
+
 @section Banner{
-<body>
 
         <div id="pagebanner">
             <h1>Profile</h1>
@@ -17,11 +11,14 @@
 
     <div id="profilebanner">
         <div id="profileimg">
-                <img src=@Model.UserInfo.Image alt="Profile">
+            <img src=@Model.UserInfo.Image alt="Profile" id="prevImg">
         </div>
         <div id="profileinfo">
-                <h1>@Model.UserInfo.FName @Model.UserInfo.SName</h1>
-                <p>@Model.UserInfo.Email</p>
+            <h1>
+                <span id="prevFname">@Model.UserInfo.FName</span>
+                <span id="prevSname">@Model.UserInfo.SName</span>
+            </h1>
+            <p id="prevEmail">@Model.UserInfo.Email</p>
             <div class="moreinfo">
                 <div class="sex">
                     <h3>Sex</h3>
@@ -41,7 +38,7 @@
                 </div>
             </div>
 
-            <button class="edit-btn">Edit Profile</button>
+                <button class="edit-btn" onclick="openEditModal()">Edit Profile</button>
         </div>
     </div>
     <div class="activitycolumn">
@@ -169,8 +166,40 @@
             }
         </div>
     </div>
-    <script src="app.js"></script>
-    
-</body>
+        <div id="editProfileModal" class="modal-overlay">
+        <div class="modal-content ">
+            <h1>Edit Profile</h1>
+            <div class="exampleprofile">
+                <div class="profile-rect">
+                    <img class="preview-img" src="@Model.UserInfo.Image" alt="Rectangle Profile">
+                </div>
+
+                <div class="profile-circle">
+                    <img class="preview-img" src="@Model.UserInfo.Image" alt="Circle Profile">
+                </div>
+            </div>
+            <form asp-action="UpdateProfile" asp-controller="Profile" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="Id" value="@Model.UserInfo.Id" />
+                <div class="modal-body">
+                    <label>First Name</label>
+                    <input type="text" name="FName" id="inputFname" value="@Model.UserInfo.FName" class="form-control" />
+                    <label>Last Name</label>
+                    <input type="text" name="SName" id="inputSname" value="@Model.UserInfo.SName" class="form-control" />
+                    <label>Profile Image</label>
+                    <input type="file" name="uploadImage" id="inputImg" class="form-control" />
+                    <label>Email</label>
+                    <input type="text" name="Email" id="inputEmail" value="@Model.UserInfo.Email" class="form-control" />
+                </div>
+
+                <div> 
+                    <button class="edit-btn" id="btnRst" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="edit-btn" onclick="closeEditModal()">Save</button>
+                </div>
+               
+            </form>
+       
+        </div>
+        </div>
+    <script src="~/js/app.js"></script>
+    <script src="~/js/editprofile.js"></script>
 }
-</html>

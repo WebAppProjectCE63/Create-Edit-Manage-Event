@@ -125,15 +125,15 @@
     text-align: left;
 }
 
-    #profileinfo button {
-        width: 100%;
-        height: 70%;
-        margin-top: 30px;
-        background-color: #333;
-        border-radius: 8px;
-        color: #ffffff;
-        font-size: large;
-    }
+.edit-btn {
+    width: auto;
+    height: 70%;
+    margin-top: 30px;
+    background-color: #333;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: large;
+}
 
         #profileinfo button:hover {
             background-color: #888;
@@ -387,4 +387,81 @@
 .reviewname p {
     font-size: 13px;
     color: #999;
+}
+
+#editProfileModal {
+    display: none;
+
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90%;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideDown 0.3s ease-out;
+}
+
+.bigavatars {
+    display: flex;
+    align-items: center;
+}
+
+    .bigavatars img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-left: -10px;
+        object-fit: cover;
+    }
+
+.exampleprofile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.profile-rect {
+    width: 600px;
+    height: 360px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.profile-circle {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid #333;
 }
