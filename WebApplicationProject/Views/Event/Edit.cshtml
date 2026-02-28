@@ -15,7 +15,7 @@
         <h4><b>ชื่อ: </b><span id="prevTitle">@Model.Title</span></h4>
         <p><b>คำอธิบาย: </b><span id="prevDesc">@Model.Description</span></p>
         <div>
-            <b>แท็ก: </b>
+            <b>Tag(s): </b>
             <span id="prevTags">
                 @if (Model.Tags != null)
                 {
@@ -26,8 +26,8 @@
                 }
             </span>
         </div>
-        <div class="meta-info"><b>รับ: </b><span id="prevMaxParti">@Model.MaxParticipants</span> คน</div>
-        <div class="meta-info"><b>วันที่ - เวลา: </b><span id="prevDate">@Model.DateTime.ToString("d MMMM yyyy - HH:MM น.", new System.Globalization.CultureInfo("th-TH"))</span></div>
+        <div class="meta-info"><b>จำนวนคน: </b><span id="prevMaxParti">@Model.MaxParticipants</span> คน</div>
+        <div class="meta-info"><b>วันที่ - เวลา: </b><span id="prevDate">@Model.DateTime.ToString("d MMMM yyyy - HH:mm น.", new System.Globalization.CultureInfo("th-TH"))</span></div>
         <div class="meta-info"><b>สถานที่: </b><span id="prevLocation">@Model.Location</span></div>
     </div>
 </div>
@@ -56,8 +56,8 @@
         <input asp-for="MaxParticipants" id="inputMaxParti" />
     </div>
     <div class="time">
-        <label>เวลา</label>
-        <input asp-for="DateTime" id="inputDateTime" type="datetime-local" value="@Model.DateTime.ToString("yyyy-MM-ddTHH:MM", System.Globalization.CultureInfo.InvariantCulture)" />
+        <label>วันที่ - เวลา</label>
+        <input asp-for="DateTime" id="inputDateTime" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" type="datetime-local" value="@Model.DateTime.ToString("yyyy-MM-ddTHH:MM", System.Globalization.CultureInfo.InvariantCulture)" />
     </div>
     <div class="location">
         <label>สถานที่</label>
