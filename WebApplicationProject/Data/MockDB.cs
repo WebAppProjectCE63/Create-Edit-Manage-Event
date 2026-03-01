@@ -1,4 +1,5 @@
 ﻿using WebApplicationProject.Models;
+
 namespace WebApplicationProject.Data
 {
     public class MockDB
@@ -7,7 +8,7 @@ namespace WebApplicationProject.Data
         public static List<Event> EventList = new List<Event>()
         {
             // ----------------------------------------------------
-            // 🎵 Event 1: ดนตรีในสวน (ข้อมูลเดิมเป๊ะ)
+            // 🎵 Event 1: ดนตรีในสวน
             // ----------------------------------------------------
             new Event
             {
@@ -19,45 +20,18 @@ namespace WebApplicationProject.Data
                 DateTime = DateTime.Now.AddDays(3),
                 Tags = new List<string> { "ดนตรี", "ผ่อนคลาย", "กลางแจ้ง" },
                 MaxParticipants = 2,
-                CurrentParticipants = 2, // แก้เลขให้ตรงกับจำนวนคน (2 คน)
+                CurrentParticipants = 2,
                 UserHostId = 101,
-        
-                // 👇👇👇 ส่วนที่เพิ่มคนเข้าไปทดสอบ 👇👇👇
                 Participants = new List<EventParticipation>
                 {
-                    // คนที่ 1: สมชาย (ID 103) -> ✅ ตัวจริง
-                    new EventParticipation
-                    {
-                        Id = 1,
-                        EventId = 1,
-                        UserId = 103,
-                        Status = ParticipationStatus.Confirmed,
-                        JoinedAt = DateTime.Now.AddDays(-2)
-                    },
-                    // คนที่ 2: ปิติ (ID 105) -> ✅ ตัวจริง
-                    new EventParticipation
-                    {
-                        Id = 2,
-                        EventId = 1,
-                        UserId = 105,
-                        Status = ParticipationStatus.Confirmed,
-                        JoinedAt = DateTime.Now.AddDays(-1)
-                    },
-                    // คนที่ 3: แนนซี่ (ID 104) -> ⏳ ตัวสำรอง (Waiting)
-                    // (สมมติว่ากดจองมาแต่ยังไม่ได้ยืนยัน หรือที่เต็ม)
-                    new EventParticipation
-                    {
-                        Id = 3,
-                        EventId = 1,
-                        UserId = 104,
-                        Status = ParticipationStatus.Waiting,
-                        JoinedAt = DateTime.Now
-                    }
+                    new EventParticipation { Id = 1, EventId = 1, UserId = 103, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-2) },
+                    new EventParticipation { Id = 2, EventId = 1, UserId = 105, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-1) },
+                    new EventParticipation { Id = 3, EventId = 1, UserId = 104, Status = ParticipationStatus.Waiting, JoinedAt = DateTime.Now }
                 }
             },
 
             // ----------------------------------------------------
-            // 🎨 Event 2: Workshop เซรามิก (ข้อมูลเดิมเป๊ะ)
+            // 🎨 Event 2: Workshop เซรามิก (🌟 อัปเดตข้อมูลสำหรับเทสต์ระบบ Manage)
             // ----------------------------------------------------
             new Event
             {
@@ -69,126 +43,55 @@ namespace WebApplicationProject.Data
                 DateTime = DateTime.Now.AddDays(10),
                 Tags = new List<string> { "Workshop", "ศิลปะ", "งานฝีมือ" },
                 MaxParticipants = 10,
-                CurrentParticipants = 1,
+                CurrentParticipants = 8, // ✅ ตั้งเป็น 8 คน (เหลือที่ว่าง 2 ที่)
                 UserHostId = 102,
-
-                // 👇👇👇 ส่วนที่เพิ่มคนเข้าไปทดสอบ 👇👇👇
                 Participants = new List<EventParticipation>
                 {
-                    // คนที่ 1: สมชาย (ID 103) -> ✅ ตัวจริง (ไปทุกงานเลยคนนี้)
-                    new EventParticipation
-                    {
-                        Id = 4,
-                        EventId = 2,
-                        UserId = 103,
-                        Status = ParticipationStatus.Confirmed,
-                        JoinedAt = DateTime.Now.AddDays(-5)
-                    },
-                     // คนที่ 2: ชูใจ (ID 106) -> ⏳ ตัวสำรอง
-                    new EventParticipation
-                    {
-                        Id = 5,
-                        EventId = 2,
-                        UserId = 106,
-                        Status = ParticipationStatus.Waiting,
-                        JoinedAt = DateTime.Now.AddDays(-1)
-                    }
+                    // 🟢 โซนตัวจริง (Confirmed) 8 คน
+                    new EventParticipation { Id = 4, EventId = 2, UserId = 103, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-10) }, // สมชาย
+                    new EventParticipation { Id = 6, EventId = 2, UserId = 107, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-9) }, // มานี
+                    new EventParticipation { Id = 7, EventId = 2, UserId = 108, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-8) }, // วีระ
+                    new EventParticipation { Id = 8, EventId = 2, UserId = 109, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-7) }, // อาทิตย์
+                    new EventParticipation { Id = 9, EventId = 2, UserId = 110, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-6) }, // จันทร์เพ็ญ
+                    new EventParticipation { Id = 10, EventId = 2, UserId = 111, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-5) },// สมหญิง
+                    new EventParticipation { Id = 11, EventId = 2, UserId = 112, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-4) },// ธนา
+                    new EventParticipation { Id = 12, EventId = 2, UserId = 113, Status = ParticipationStatus.Confirmed, JoinedAt = DateTime.Now.AddDays(-3) },// วิภา
+
+                    // 🟡 โซนตัวสำรอง (Waiting) 5 คน
+                    new EventParticipation { Id = 5, EventId = 2, UserId = 106, Status = ParticipationStatus.Waiting, JoinedAt = DateTime.Now.AddDays(-2) }, // ชูใจ (คิว 1)
+                    new EventParticipation { Id = 13, EventId = 2, UserId = 114, Status = ParticipationStatus.Waiting, JoinedAt = DateTime.Now.AddDays(-1) },// กฤษณะ (คิว 2)
+                    new EventParticipation { Id = 14, EventId = 2, UserId = 115, Status = ParticipationStatus.Waiting, JoinedAt = DateTime.Now.AddHours(-20) },// รัตนา (คิว 3)
+                    new EventParticipation { Id = 15, EventId = 2, UserId = 116, Status = ParticipationStatus.Waiting, JoinedAt = DateTime.Now.AddHours(-10) },// เดชา (คิว 4)
+                    new EventParticipation { Id = 16, EventId = 2, UserId = 117, Status = ParticipationStatus.Waiting, JoinedAt = DateTime.Now.AddHours(-5) } // อารยา (คิว 5)
                 }
             }
         };
 
-        // 2. จำลองข้อมูล User (ฉบับอัปเดต เพิ่ม Gender & Birthday)
+        // 2. จำลองข้อมูล User 
         public static List<User> UsersList = new List<User>()
         {
-            // 👑 1. Host งานดนตรี (ID: 101) - ผู้ชาย วัยทำงาน
-            new User
-            {
-                Id = 101,
-                Username = "music_host",
-                Password = "123",
-                FName = "ก้องเกียรติ",
-                SName = "ใจดี",
-                Email = "kong@music.com",
-                Gender = "Male", // ✅ เพิ่มเพศ
-                Birthday = new DateTime(1990, 5, 20), // ✅ เพิ่มวันเกิด (อายุ 36)
-                Image = "https://ui-avatars.com/api/?name=Kong+J&background=random&size=128",
-                MyEvents = new List<EventParticipation>()
-            },
+            // 👑 Host
+            new User { Id = 101, Username = "music_host", Password = "123", FName = "ก้องเกียรติ", SName = "ใจดี", Email = "kong@test.com", Gender = "Male", Birthday = new DateTime(1990, 5, 20), Image = "https://ui-avatars.com/api/?name=Kong+J&background=random" },
+            new User { Id = 102, Username = "art_host", Password = "123", FName = "ปั้นจั่น", SName = "งานละเอียด", Email = "pun@test.com", Gender = "Female", Birthday = new DateTime(1995, 8, 15), Image = "https://ui-avatars.com/api/?name=Pun+N&background=random" },
 
-            // 👑 2. Host งาน Workshop (ID: 102) - ผู้หญิง ศิลปิน
-            new User
-            {
-                Id = 102,
-                Username = "art_host",
-                Password = "123",
-                FName = "ปั้นจั่น",
-                SName = "งานละเอียด",
-                Email = "pun@art.com",
-                Gender = "Female", // ✅ เพิ่มเพศ
-                Birthday = new DateTime(1995, 8, 15), // ✅ เพิ่มวันเกิด (อายุ 31)
-                Image = "https://ui-avatars.com/api/?name=Pun+N&background=random&size=128",
-                MyEvents = new List<EventParticipation>()
-            },
+            // 👤 Users เดิม
+            new User { Id = 103, Username = "somchai", Password = "123", FName = "สมชาย", SName = "เข็มกลัด", Email = "somchai@test.com", Gender = "Male", Birthday = new DateTime(1985, 1, 1), Image = "https://ui-avatars.com/api/?name=Somchai+K&background=0D8ABC&color=fff" },
+            new User { Id = 104, Username = "nancy", Password = "123", FName = "แนนซี่", SName = "มีตังค์", Email = "nancy@test.com", Gender = "Female", Birthday = new DateTime(2000, 12, 25), Image = "https://ui-avatars.com/api/?name=Nancy+M&background=FFC107" },
+            new User { Id = 105, Username = "piti", Password = "123", FName = "ปิติ", SName = "พอใจ", Email = "piti@test.com", Gender = "Male", Birthday = new DateTime(1998, 3, 10), Image = "https://ui-avatars.com/api/?name=Piti+P&background=8E44AD&color=fff" },
+            new User { Id = 106, Username = "chujai", Password = "123", FName = "ชูใจ", SName = "เลิศล้ำ", Email = "chujai@test.com", Gender = "LGBTQ+", Birthday = new DateTime(1992, 11, 5), Image = "https://ui-avatars.com/api/?name=Chujai+L&background=E74C3C&color=fff" },
 
-            // 👤 3. สมชาย (ID: 103) - ผู้ชาย (ตัวจริงทุกงาน)
-            new User
-            {
-                Id = 103,
-                Username = "somchai",
-                Password = "123",
-                FName = "สมชาย",
-                SName = "เข็มกลัด",
-                Email = "somchai@test.com",
-                Gender = "Male", // ✅ เพิ่มเพศ
-                Birthday = new DateTime(1985, 1, 1), // ✅ เพิ่มวันเกิด (อายุ 41)
-                Image = "https://ui-avatars.com/api/?name=Somchai+K&background=0D8ABC&color=fff&size=128",
-                MyEvents = new List<EventParticipation>()
-            },
-
-            // 👤 4. แนนซี่ (ID: 104) - ผู้หญิง (ตัวสำรองงานดนตรี)
-            new User
-            {
-                Id = 104,
-                Username = "nancy",
-                Password = "123",
-                FName = "แนนซี่",
-                SName = "มีตังค์",
-                Email = "nancy@test.com",
-                Gender = "Female", // ✅ เพิ่มเพศ
-                Birthday = new DateTime(2000, 12, 25), // ✅ เพิ่มวันเกิด (วัยรุ่น อายุ 25)
-                Image = "https://ui-avatars.com/api/?name=Nancy+M&background=FFC107&size=128",
-                MyEvents = new List<EventParticipation>()
-            },
-
-            // 👤 5. ปิติ (ID: 105) - ผู้ชาย (ตัวจริงงานดนตรี)
-            new User
-            {
-                Id = 105,
-                Username = "piti",
-                Password = "123",
-                FName = "ปิติ",
-                SName = "พอใจ",
-                Email = "piti@test.com",
-                Gender = "Male", // ✅ เพิ่มเพศ
-                Birthday = new DateTime(1998, 3, 10), // ✅ เพิ่มวันเกิด (อายุ 28)
-                Image = "https://ui-avatars.com/api/?name=Piti+P&background=8E44AD&color=fff&size=128",
-                MyEvents = new List<EventParticipation>()
-            },
-
-            // 👤 6. ชูใจ (ID: 106) - LGBTQ+ (ตัวสำรองงาน Workshop)
-            new User
-            {
-                Id = 106,
-                Username = "chujai",
-                Password = "123",
-                FName = "ชูใจ",
-                SName = "เลิศล้ำ",
-                Email = "chujai@test.com",
-                Gender = "LGBTQ+", // ✅ เพิ่มเพศทางเลือก
-                Birthday = new DateTime(1992, 11, 5), // ✅ เพิ่มวันเกิด (อายุ 33)
-                Image = "https://ui-avatars.com/api/?name=Chujai+L&background=E74C3C&color=fff&size=128",
-                MyEvents = new List<EventParticipation>()
-            }
+            // 🌟 Users ใหม่ (107 - 117) สำหรับทดสอบการรันเลขและย้ายตาราง
+            new User { Id = 107, Username = "manee", Password = "123", FName = "มานี", SName = "รักดี", Email = "manee@test.com", Gender = "Female", Birthday = new DateTime(1996, 2, 14), Image = "https://ui-avatars.com/api/?name=Manee+R&background=random" },
+            new User { Id = 108, Username = "veera", Password = "123", FName = "วีระ", SName = "กล้าหาญ", Email = "veera@test.com", Gender = "Male", Birthday = new DateTime(1991, 7, 20), Image = "https://ui-avatars.com/api/?name=Veera+K&background=random" },
+            new User { Id = 109, Username = "arthit", Password = "123", FName = "อาทิตย์", SName = "สว่าง", Email = "arthit@test.com", Gender = "Male", Birthday = new DateTime(1994, 9, 9), Image = "https://ui-avatars.com/api/?name=Arthit+S&background=random" },
+            new User { Id = 110, Username = "junpen", Password = "123", FName = "จันทร์เพ็ญ", SName = "งามตา", Email = "junpen@test.com", Gender = "Female", Birthday = new DateTime(1997, 10, 31), Image = "https://ui-avatars.com/api/?name=Junpen+N&background=random" },
+            new User { Id = 111, Username = "somying", Password = "123", FName = "สมหญิง", SName = "จริงใจ", Email = "somying@test.com", Gender = "Female", Birthday = new DateTime(1989, 4, 12), Image = "https://ui-avatars.com/api/?name=Somying+J&background=random" },
+            new User { Id = 112, Username = "thana", Password = "123", FName = "ธนา", SName = "พาณิชย์", Email = "thana@test.com", Gender = "Male", Birthday = new DateTime(1993, 6, 6), Image = "https://ui-avatars.com/api/?name=Thana+P&background=random" },
+            new User { Id = 113, Username = "wipa", Password = "123", FName = "วิภา", SName = "วาที", Email = "wipa@test.com", Gender = "Female", Birthday = new DateTime(1999, 1, 1), Image = "https://ui-avatars.com/api/?name=Wipa+W&background=random" },
+            new User { Id = 114, Username = "kritsana", Password = "123", FName = "กฤษณะ", SName = "สีนวล", Email = "kritsana@test.com", Gender = "Male", Birthday = new DateTime(1988, 8, 8), Image = "https://ui-avatars.com/api/?name=Kritsana+S&background=random" },
+            new User { Id = 115, Username = "rattana", Password = "123", FName = "รัตนา", SName = "พรหมมินทร์", Email = "rattana@test.com", Gender = "Female", Birthday = new DateTime(1995, 3, 3), Image = "https://ui-avatars.com/api/?name=Rattana+P&background=random" },
+            new User { Id = 116, Username = "decha", Password = "123", FName = "เดชา", SName = "ชาญวิทย์", Email = "decha@test.com", Gender = "Male", Birthday = new DateTime(1992, 12, 12), Image = "https://ui-avatars.com/api/?name=Decha+C&background=random" },
+            new User { Id = 117, Username = "araya", Password = "123", FName = "อารยา", SName = "ศิริ", Email = "araya@test.com", Gender = "LGBTQ+", Birthday = new DateTime(2001, 5, 5), Image = "https://ui-avatars.com/api/?name=Araya+S&background=random" }
         };
     }
 }

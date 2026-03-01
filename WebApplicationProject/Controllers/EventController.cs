@@ -67,6 +67,29 @@ namespace WebApplicationProject.Controllers
             return View(eventToManage);
         }
 
+        [HttpPost]
+        public IActionResult RemoveParti(int eventId, int userId)
+        {
+            var eventToManage = MockDB.EventList.FirstOrDefault(e => e.Id == eventId);
+            if (eventToManage == null) return NotFound("ไม่มีกิจกรรมนี้");
+            var ticket = eventToManage.Participants.FirstOrDefault(t => t.UserId == userId);
+            if (ticket == null) return NotFound("ไม่มีผู้ใช้นี้ในกิจกรรม");
+            ticket.Status = ParticipationStatus.Remove;
+            eventToManage.CurrentParticipants = eventToManage.Participants.Count(p => p.Status == ParticipationStatus.Confirmed);
+            return Ok();
+        }
+        [HttpPost]
+        public IActionResult PromoteParti(int eventId, int userId)
+        {
+            var eventToManage = MockDB.EventList.FirstOrDefault(e => e.Id == eventId);
+            if (eventToManage == null) return NotFound("ไม่มีกิจกรรมนี้");
+            if (eventToManage.CurrentParticipants >= eventToManage.MaxParticipants) return BadRequest("ผู้เข้าร่วมตัวจริงเต็มแล้ว ไม่สามารถเพิ่มได้");
+            var ticket = eventToManage.Participants.FirstOrDefault(t => t.UserId == userId);
+            if (ticket == null) return NotFound("ไม่มีผู้ใช้นี้ในกิจกรรม");
+            ticket.Status = ParticipationStatus.Confirmed;
+            eventToManage.CurrentParticipants = eventToManage.Participants.Count(p => p.Status == ParticipationStatus.Confirmed);
+            return Ok();
+        }
         private List<string> ProcessTags(string rawTags)
         {
             if (string.IsNullOrEmpty(rawTags))
