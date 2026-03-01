@@ -39,7 +39,7 @@
     <div class="partiTable">
         <div class="tableHeader">
             <h4>รายชื่อตัวจริง</h4>
-            <div class="numOfParti">@Model.CurrentParticipants / @Model.MaxParticipants Member</div>
+            <div class="numOfParti"><span id="currentParti">@Model.CurrentParticipants</span> / @Model.MaxParticipants Member</div>
         </div>
         <hr />
         <table>
@@ -51,17 +51,17 @@
                     <th>จัดการ</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="confirmedTable">
                 @if (userInEvent != null){
                     int order = 1;
                     @foreach (var ticket in Model.Participants.Where(p => p.Status == ParticipationStatus.Confirmed).OrderBy(p => p.JoinedAt)){
                         var user = userInEvent.FirstOrDefault(u => u.Id == ticket.UserId);
                         if (user != null){
-                            <tr>
-                                <td>@order</td>
+                            <tr id="row_@user.Id">
+                                <td class="seqNumber">@order</td>
                                 <td><img src="@user.Image" />@user.FName @user.SName</td>
                                 <td>@ticket.JoinedAt</td>
-                                <td><button>ลบ</button></td>
+                                <td><button onclick="removeUser(@Model.Id, @user.Id)">ลบ</button></td>
                             </tr>
                             order += 1;
                         }
@@ -84,7 +84,7 @@
                     <th>จัดการ</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="waitingTable">
                 @if (userInEvent != null)
                 {
                     int order = 1;
@@ -92,11 +92,11 @@
                     {
                         var user = userInEvent.FirstOrDefault(u => u.Id == ticket.UserId);
                         if (user != null){
-                            <tr>
-                                <td>@order</td>
+                            <tr id="row_@user.Id">
+                                <td class="seqNumber">@order</td>
                                 <td><img src="@user.Image"/>@user.FName @user.SName</td>
                                 <td>@ticket.JoinedAt</td>
-                                <td><button>เพิ่ม</button></td>
+                                <td><button onclick="promoteUser(@Model.Id, @user.Id)">เพิ่ม</button></td>
                             </tr>
                             order += 1;
                         }
@@ -106,3 +106,6 @@
         </table>
     </div>
 </div>
+@section Scripts{
+    <script src="~/js/manageEvent.js" ></script>
+};
