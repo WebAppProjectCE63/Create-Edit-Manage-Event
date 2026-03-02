@@ -4,6 +4,7 @@ namespace WebApplicationProject.Data
 {
     public class MockDB
     {
+        public static int CurrentLoggedInUserId = 102;
         // 1. จำลองข้อมูล Event (ที่มีรายชื่อคนอยู่ข้างในแล้ว)
         public static List<Event> EventList = new List<Event>()
         {
@@ -69,8 +70,8 @@ namespace WebApplicationProject.Data
 
         // 2. จำลองข้อมูล User 
         public static List<User> UsersList = new List<User>()
-        {
             // 👑 Host
+        {
             new User { Id = 101, Username = "music_host", Password = "123", FName = "ก้องเกียรติ", SName = "ใจดี", Email = "kong@test.com", Gender = "Male", Birthday = new DateTime(1990, 5, 20), Image = "https://ui-avatars.com/api/?name=Kong+J&background=random" },
             new User { Id = 102, Username = "art_host", Password = "123", FName = "ปั้นจั่น", SName = "งานละเอียด", Email = "pun@test.com", Gender = "Female", Birthday = new DateTime(1995, 8, 15), Image = "https://ui-avatars.com/api/?name=Pun+N&background=random" },
 
