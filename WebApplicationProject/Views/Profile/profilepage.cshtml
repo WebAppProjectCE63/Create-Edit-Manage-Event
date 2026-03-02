@@ -37,8 +37,11 @@
                         <p>@age</p>
                 </div>
             </div>
-
+            @if (WebApplicationProject.Data.MockDB.CurrentLoggedInUserId == Model.UserInfo.Id)
+            
+            {
                 <button class="edit-btn" onclick="openEditModal()">Edit Profile</button>
+            }
         </div>
     </div>
     <div class="activitycolumn">
@@ -140,8 +143,9 @@
     <div class="rating">
         <h1>Rating</h1>
         <div class="ratinglist">
-            @foreach (var rw in Model.Reviews)
+            @foreach (var rw in Model.UserInfo.Reviewslist)
             {
+                var author = WebApplicationProject.Data.MockDB.UsersList.FirstOrDefault(u => u.Id == rw.UserId);
             <div class="reviewblock">
                 <div class="stars">
                             @for (int i = 0; i < rw.stars; i++)
@@ -156,10 +160,10 @@
                 <h2>@rw.reviewtitle</h2>
                 <p class="reviewbody">@rw.reviewbody</p>
                 <div class="reviewprofile">
-                    <img src=@rw.Author.Image alt="Profile">
+                        <img src=@author.Image alt="Profile">
                     <div class="reviewname">
-                        <h4>@rw.Author.FName</h4>
-                        <p>@rw.Author.SName</p>
+                            <h4>@author.FName</h4>
+                            <p>@author.SName</p>
                     </div>
                 </div>
             </div>
@@ -193,7 +197,7 @@
 
                 <div> 
                     <button class="edit-btn" id="btnRst" onclick="closeEditModal()">Cancel</button>
-                    <button type="submit" class="edit-btn" onclick="closeEditModal()">Save</button>
+                    <button type="submit" class="edit-btn">Save</button>
                 </div>
                
             </form>
