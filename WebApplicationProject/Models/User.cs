@@ -13,6 +13,7 @@
         public string Password { get; set; }
         public string Image { get; set; }
         public List<EventParticipation> MyEvents { get; set; } = new List<EventParticipation>();
+        public List<Review> Reviewslist { get; set; } = new List<Review>();
     }
 }
  

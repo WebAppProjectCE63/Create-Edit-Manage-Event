@@ -70,10 +70,42 @@ namespace WebApplicationProject.Data
 
         // 2. จำลองข้อมูล User 
         public static List<User> UsersList = new List<User>()
-            // 👑 Host
         {
+            // 👑 Host: ก้องเกียรติ
             new User { Id = 101, Username = "music_host", Password = "123", FName = "ก้องเกียรติ", SName = "ใจดี", Email = "kong@test.com", Gender = "Male", Birthday = new DateTime(1990, 5, 20), Image = "https://ui-avatars.com/api/?name=Kong+J&background=random" },
-            new User { Id = 102, Username = "art_host", Password = "123", FName = "ปั้นจั่น", SName = "งานละเอียด", Email = "pun@test.com", Gender = "Female", Birthday = new DateTime(1995, 8, 15), Image = "https://ui-avatars.com/api/?name=Pun+N&background=random" },
+    
+            // 👑 Host: ปั้นจั่น (จำลองได้รับ 3 รีวิวจาก วีระ, ชูใจ และ สมชาย)
+            new User
+            {
+                Id = 102, Username = "art_host", Password = "123", FName = "ปั้นจั่น", SName = "งานละเอียด", Email = "pun@test.com", Gender = "Female", Birthday = new DateTime(1995, 8, 15), Image = "https://ui-avatars.com/api/?name=Pun+N&background=random",
+                Reviewslist = new List<Review>
+                {
+                    new Review
+                    {
+                        Id = 1,
+                        stars = 5,
+                        reviewtitle = "โฮสต์ดูแลดีมาก",
+                        reviewbody = "กิจกรรมสนุกมากครับ โฮสต์เป็นกันเองสุดๆ",
+                        UserId = 108,
+                    },
+                    new Review
+                    {
+                        Id = 2,
+                        stars = 4,
+                        reviewtitle = "แนะนำเลย",
+                        reviewbody = "เนื้อหาแน่นปึ๊ก แต่สถานที่แอบแคบไปนิดนึง",
+                        UserId = 106,
+                    },
+                    new Review
+                    {
+                        Id = 3,
+                        stars = 3,
+                        reviewtitle = "พอใช้ได้",
+                        reviewbody = "กิจกรรมน่าสนใจครับ",
+                        UserId = 103,
+                    }
+                }
+            },
 
             // 👤 Users เดิม
             new User { Id = 103, Username = "somchai", Password = "123", FName = "สมชาย", SName = "เข็มกลัด", Email = "somchai@test.com", Gender = "Male", Birthday = new DateTime(1985, 1, 1), Image = "https://ui-avatars.com/api/?name=Somchai+K&background=0D8ABC&color=fff" },
@@ -81,7 +113,7 @@ namespace WebApplicationProject.Data
             new User { Id = 105, Username = "piti", Password = "123", FName = "ปิติ", SName = "พอใจ", Email = "piti@test.com", Gender = "Male", Birthday = new DateTime(1998, 3, 10), Image = "https://ui-avatars.com/api/?name=Piti+P&background=8E44AD&color=fff" },
             new User { Id = 106, Username = "chujai", Password = "123", FName = "ชูใจ", SName = "เลิศล้ำ", Email = "chujai@test.com", Gender = "LGBTQ+", Birthday = new DateTime(1992, 11, 5), Image = "https://ui-avatars.com/api/?name=Chujai+L&background=E74C3C&color=fff" },
 
-            // 🌟 Users ใหม่ (107 - 117) สำหรับทดสอบการรันเลขและย้ายตาราง
+            // 🌟 Users ใหม่
             new User { Id = 107, Username = "manee", Password = "123", FName = "มานี", SName = "รักดี", Email = "manee@test.com", Gender = "Female", Birthday = new DateTime(1996, 2, 14), Image = "https://ui-avatars.com/api/?name=Manee+R&background=random" },
             new User { Id = 108, Username = "veera", Password = "123", FName = "วีระ", SName = "กล้าหาญ", Email = "veera@test.com", Gender = "Male", Birthday = new DateTime(1991, 7, 20), Image = "https://ui-avatars.com/api/?name=Veera+K&background=random" },
             new User { Id = 109, Username = "arthit", Password = "123", FName = "อาทิตย์", SName = "สว่าง", Email = "arthit@test.com", Gender = "Male", Birthday = new DateTime(1994, 9, 9), Image = "https://ui-avatars.com/api/?name=Arthit+S&background=random" },
