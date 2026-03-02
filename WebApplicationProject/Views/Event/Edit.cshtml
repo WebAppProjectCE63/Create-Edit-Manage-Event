@@ -29,6 +29,7 @@
         <div class="meta-info"><b>จำนวนคน: </b><span id="prevMaxParti">@Model.MaxParticipants</span> คน</div>
         <div class="meta-info"><b>วันที่ - เวลา: </b><span id="prevDate">@Model.DateTime.ToString("d MMMM yyyy - HH:mm น.", new System.Globalization.CultureInfo("th-TH"))</span></div>
         <div class="meta-info"><b>สถานที่: </b><span id="prevLocation">@Model.Location</span></div>
+        <a href="@Url.Action("Manage", "Event", new { id = Model.Id })" class="btnLink">จัดการกิจกรรม</a>
     </div>
 </div>
 <h3>ฟอร์มแก้ไขข้อมูล</h3>
